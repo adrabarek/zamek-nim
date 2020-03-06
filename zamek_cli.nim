@@ -14,24 +14,6 @@ args.next()
 if args.kind != cmdArgument:
   handleInvalidParams()
 
-    # Dodawanie notatki
-    #   zamek add <tytuł>
-    # Usuwanie notatki
-    #   zamek remove <tytuł>/<hash>
-    # Edytowanie notatki
-    #   zamek edit <tytuł>
-    # Dodanie tagów do notatki
-    #   zamek tag-add <tytuł>/<hash> <tag>...
-    # Usunięcie tagów z notatki
-    #   zamek tag-remove <tytuł>/<hash> <tag>...
-    # Szukanie notatek po tagach
-    #   zamek find-by-tags <tag>...
-    # Szukanie notatek po treści
-    #   zamek find tresc
-    # Szukanie notatek po połączeniach
-    #   zamek find-connected <tytuł>/<hash> <connection distance, default 1>
-    # Utworzenie rejestru (pozwala też ponownie wykreować rejestr na podstawie obecnych plików):
-    #   zamek create
 case args.key
 of "create":
   echo "Creating a new notes repository."
