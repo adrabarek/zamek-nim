@@ -1,0 +1,1 @@
+nim c zamek_cli.nim

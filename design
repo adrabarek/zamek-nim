@@ -1,0 +1,37 @@
+Notatka:
+1. Tagi
+2. Tytuł
+3. Treść
+4. Połączenia
+
+Operacje (i użycie w CLI):
+	Posortowane według częstotliwości użycia.
+		Dodawanie notatki
+			zamek add <tytuł>
+		Usuwanie notatki
+			zamek remove <tytuł>/<hash>
+		Edytowanie notatki
+			zamek edit <tytuł>
+		Dodanie tagów do notatki
+			zamek tag-add <tytuł>/<hash> <tag>...
+		Usunięcie tagów z notatki
+			zamek tag-remove <tytuł>/<hash> <tag>...
+		Szukanie notatek po tagach
+			zamek find-by-tag <tag>
+		Szukanie notatek po treści
+			zamek find tresc
+		Szukanie notatek po połączeniach
+			zamek find-connected <tytuł>/<hash> <connection distance, default 1>
+		Utworzenie rejestru (pozwala też ponownie wykreować rejestr na podstawie obecnych plików):
+			zamek create
+
+Zamek pracuje zawsze na obecnym katalogu. 
+
+Implementacja:
+Notatka to plik na dysku, read-only; zamek zdejmuje flagę przed operacjami na pliku.
+Cały katalog jest read-only, może być modyfikowany tylko przez zamek.
+Jeden binarny plik, zamek, zawierający całą księgowość.
+To nie będzie się skalowało do dziesiątek tysięcy notatek, ale kilkaset powinno być OK.
+
+Zettelkasten
+Katalog z notatkami, który jest read-only w systemie i może być zarządzany tylko przez program zettelkasten.

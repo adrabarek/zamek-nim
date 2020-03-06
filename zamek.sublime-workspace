@@ -1,0 +1,1282 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"list-st",
+				"list-style-type\tproperty"
+			],
+			[
+				"back",
+				"background-color\tproperty"
+			],
+			[
+				"getNode",
+				"scene_get_node_by_id"
+			],
+			[
+				"Inc",
+				"include"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "design",
+			"settings":
+			{
+				"buffer_size": 1197,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "design"
+			}
+		},
+		{
+			"file": "zamek-cli.nim",
+			"settings":
+			{
+				"buffer_size": 27,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "zamek.sublime-project",
+			"settings":
+			{
+				"buffer_size": 45,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/drabard/.config/sublime-text-3/Packages/User/zamek.sublime-build",
+			"settings":
+			{
+				"buffer_size": 31,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "untitled.sublime-build"
+			}
+		},
+		{
+			"file": "build.sh",
+			"settings":
+			{
+				"buffer_size": 19,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Script",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Script",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Script",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Install Package",
+				"Package Control: Install Package"
+			],
+			[
+				"Package",
+				"Install Package Control"
+			],
+			[
+				"package control: install package",
+				"Package Control: Install Package"
+			],
+			[
+				"Cla",
+				"Clang Format: Format Selection"
+			],
+			[
+				"Clang",
+				"Clang Format: Format Selection"
+			],
+			[
+				"Clan",
+				"Clang Format: Format Selection"
+			],
+			[
+				"Format S",
+				"Clang Format: Format Selection"
+			],
+			[
+				"Format",
+				"Clang Format: Format Selection"
+			],
+			[
+				"View",
+				"View: Toggle Menu"
+			]
+		],
+		"width": 497.0
+	},
+	"console":
+	{
+		"height": 136.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/drabard/code/zettelkasten"
+	],
+	"file_history":
+	[
+		"/home/drabard/.config/sublime-text-3/Packages/User/build.sh",
+		"/home/drabard/code/zettelkasten/zamek.nim",
+		"/home/drabard/code/zettelkasten/zamek-cli.nim",
+		"/home/drabard/code/zettelkasten/zettelkasten.nim",
+		"/home/drabard/notes/social/games/rpg/pathfinder/adventures/szczęśliwa_rodzina/zarys",
+		"/home/drabard/notes/social/games/rpg/pathfinder/adventures/szczęśliwa_rodzina/postacie",
+		"/home/drabard/notes/social/games/rpg/pathfinder/adventures/szczęśliwa_rodzina/1_pakowanie_się_w_maliny/spotkania",
+		"/home/drabard/.bashrc",
+		"/home/drabard/notes/mind/experiments/foods",
+		"/home/drabard/notes/mind/experiments/foods_data",
+		"/home/drabard/notes/mind/ayurveda",
+		"/home/drabard/notes/social/games/rpg/pathfinder/database.json",
+		"/home/drabard/code/nim-ncurses/ncurses.nimble",
+		"/home/drabard/notes/mind/thoughts/references",
+		"/home/drabard/notes/social/tmp/computor_parts",
+		"/home/drabard/bin/many_clicks",
+		"/home/drabard/notes/mind/tech/isec/rsa_picoctf",
+		"/home/drabard/code/nim-ncurses/ncurses.nim",
+		"/home/drabard/bin/GoPanda2.AppImage",
+		"/home/drabard/play_noise.sh",
+		"/home/drabard/notes/start",
+		"/home/drabard/notes/spirit/meditation.md",
+		"/home/drabard/notes/mind/games/rpg/pathfinder_statuses",
+		"/home/drabard/notes/mind/tech/isec/isec_reference",
+		"/home/drabard/notes/done",
+		"/home/drabard/notes/social/people",
+		"/home/drabard/notes/mind/work_log",
+		"/home/drabard/.newsbeuter/urls",
+		"/home/drabard/notes/body/climbing/self-assesment",
+		"/home/drabard/notes/thoughts/hobbs_leviathan",
+		"/home/drabard/notes/body/climbing/training",
+		"/home/drabard/notes/start.md",
+		"/home/drabard/notes/thoughts/references",
+		"/home/drabard/notes/other/wlasna_dzialalnosc",
+		"/home/drabard/notes/projects/work_log",
+		"/home/drabard/notes/projects/rules",
+		"/home/drabard/notes/thoughts/anxiety_1.md",
+		"/home/drabard/notes/thoughts/general_patterns",
+		"/home/drabard/.sec/github-recovery-codes.txt",
+		"/home/drabard/notes/projects/project_ideas.md",
+		"/home/drabard/bin/update_website.lftp",
+		"/home/drabard/notes/inbox.md",
+		"/home/drabard/bin/update_website.sh",
+		"/home/drabard/tmp/ml_neuro/orig.py",
+		"/home/drabard/tmp/ml_neuro/neuro.py",
+		"/home/drabard/notes/other/mieszkanie",
+		"/home/drabard/tmp/ml_neuro/18",
+		"/home/drabard/Pobrane/test.S",
+		"/home/drabard/tmp/picoctf/flag.png",
+		"/tmp/martynel_neuro/neuro.py",
+		"/tmp/martynel_neuro/test.py",
+		"/tmp/martynel_neuro/plot_fun.py",
+		"/home/drabard/tmp/picoctf/overflow1/vuln.c",
+		"/home/drabard/tmp/picoctf/flags.png",
+		"/home/drabard/tmp/picoctf/vault4/decode.nim",
+		"/home/drabard/tmp/picoctf/VaultDoor4.java",
+		"/home/drabard/tools/stego/lsb_steg.nim",
+		"/home/drabard/tools/morse/morse.nim",
+		"/home/drabard/tmp/picoctf/store/store.c",
+		"/home/drabard/tmp/picoctf/store/test.c",
+		"/home/drabard/tmp/picoctf/tar/untar.sh",
+		"/home/drabard/tmp/picoctf/v1/vuln.c",
+		"/home/drabard/tmp/picoctf/vd3.nim",
+		"/home/drabard/tmp/picoctf/VaultDoor3.java",
+		"/home/drabard/tmp/picoctf/diff/difdupa.nim",
+		"/home/drabard/tmp/picoctf/diff/dupa",
+		"/home/drabard/tmp/picoctf/v/straces/strace.1850",
+		"/home/drabard/notes/tech/isec/isec_reference",
+		"/home/drabard/tmp/picoctf/v/straces/strace.1845",
+		"/home/drabard/tmp/picoctf/v/test0_strace",
+		"/home/drabard/tmp/picoctf/v/vuln.c",
+		"/home/drabard/tmp/picoctf/v/vuln_strace",
+		"/home/drabard/tmp/strace_fun/check.3140",
+		"/home/drabard/tmp/picoctf/v/test0.c",
+		"/home/drabard/tmp/picoctf/v/shell2",
+		"/home/drabard/tmp/strace_fun/check.3139",
+		"/home/drabard/tmp/strace_fun/check.2824",
+		"/home/drabard/tmp/strace_fun/check.2825",
+		"/home/drabard/tmp/strace_fun/check.2823",
+		"/home/drabard/tmp/strace_fun/check.2826",
+		"/home/drabard/tmp/picoctf/v/test0_",
+		"/home/drabard/tmp/picoctf/v/test_",
+		"/home/drabard/tmp/picoctf/repr.nim",
+		"/home/drabard/tmp/picoctf/repr.py",
+		"/home/drabard/tmp/picoctf/VaultDoor1.java",
+		"/home/drabard/tmp/picoctf/caesar.py",
+		"/home/drabard/tmp/picoctf/VaultDoorTraining.java",
+		"/home/drabard/tmp/picoctf/vuln.c",
+		"/home/drabard/notes/projects/queue.md",
+		"/home/drabard/notes/games/ctf/bandit",
+		"/home/drabard/.ssh/environment",
+		"/home/drabard/notes/games/rpg/pathfinder/adventures/0/zarys",
+		"/home/drabard/.ssh/config",
+		"/home/drabard/.ssh/bandit26",
+		"/home/drabard/.ssh/bandit17",
+		"/home/drabard/.ssh/bandit14",
+		"/home/drabard/notes/projects/visualization_library/design",
+		"/home/drabard/notes/projects/current_project.md",
+		"/home/drabard/notes/games/rpg/dnd_druid.md",
+		"/home/drabard/notes/routines/energy_progression",
+		"/home/drabard/notes/games/rpg/pathfinder/characters/brakka_goblin_cleric_1",
+		"/home/drabard/notes/games/sc2/tvz",
+		"/home/drabard/notes/games/sc2/tvt",
+		"/home/drabard/notes/games/eve/scripts/esi.py",
+		"/home/drabard/notes/games/sc2/tvp",
+		"/home/drabard/notes/games/eve/scripts/eve_data.py",
+		"/home/drabard/notes/games/eve/scripts/market_data.py",
+		"/home/drabard/notes/games/eve/scripts/get_market_data.py",
+		"/home/drabard/notes/games/rpg/pathfinder_rules",
+		"/home/drabard/notes/games/rpg/pathfinder_notes",
+		"/home/drabard/notes/games/rpg/pathfinder_session_notes",
+		"/home/drabard/notes/body/exercise_plan.md",
+		"/home/drabard/notes/spirit/majhima_nikaya_lectures/mn22_simile_of_the_snake.md",
+		"/home/drabard/notes/thoughts/journal.md",
+		"/var/www/html/index.html",
+		"/home/drabard/notes/games/rpg/curse_of_strahd_karty",
+		"/home/drabard/notes/thoughts/production_process_game.md",
+		"/home/drabard/notes/routines/software_design.md",
+		"/home/drabard/notes/routines/focused_work.md",
+		"/home/drabard/code/power_grid/power_grid.py",
+		"/home/drabard/code/flask-tutorial/.gitignore",
+		"/home/drabard/code/power_grid/architecture.md",
+		"/home/drabard/notes/thoughts/mind_model.md",
+		"/home/drabard/code/power_grid/test.py",
+		"/home/drabard/code/website/index.html",
+		"/home/drabard/code/website/css/styles.scss",
+		"/home/drabard/code/website/css/styles.css",
+		"/home/drabard/notes/software_design/design.org"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 98.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"shell",
+			"title",
+			"Encrypted message:\nNe iy nytkwpsznyg nth it mtsztcy vjzprj zfzjy rkhpibj nrkitt ltc tnnygy ysee itd tte cxjltk\n\nIfrosr tnj noawde uk siyyzre, yse Bnretèwp Cousex mls hjpn xjtnbjytki xatd eisjd\n\nIz bls lfwskqj azycihzeej yz Brftsk ip Volpnèxj ls oy hay tcimnyarqj dkxnrogpd os 1553 my Mnzvgs Mazytszf Merqlsu ny hox moup Wa inqrg ipl. Ynr. Gotgat Gltzndtg Gplrfdo \n\nLtc tnj tmvqpmkseaznzn uk ehox nivmpr g ylbrj ts ltcmki my yqtdosr tnj wocjc hgqq ol fy oxitngwj arusahje fuw ln guaaxjytrd catizm tzxbkw zf vqlckx hizm ceyupcz yz tnj fpvjc hgqqpohzCZK{m311a50_0x_a1rn3x3_h1ah3xf653pdkh}\n\nEhk ktryy herq-ooizxetypd jjdcxnatoty ol f aordllvmlbkytc inahkw socjgex, bls sfoe gwzuti 1467 my Rjzn Hfetoxea Gqmexyt.\n\nTnj Gimjyèrk Htpnjc iy ysexjqoxj dosjeisjd cgqwej yse Gqmexyt Doxn ox Fwbkwei Inahkw.\n\nTn 1508, Ptsatsps Zwttnjxiax tnbjytki ehk xz-cgqwej ylbaql rkhea (g rltxni ol xsilypd gqahggpty) ysaz bzuri wazjc bk f nroytcgq nosuznkse ol yse Bnretèwp Cousex.\n\nGplrfdo’y xpcuso butvlky lpvjlrki tn 1555 gx l cuseitzltoty ol yse lncsz. Yse rthex mllbjd ol yse gqahggpty fce tth snnqtki cemzwaxqj, bay ehk fwpnfmezx lnj yse osoed qptzjcs gwp mocpd hd xegsd ol f xnkrznoh vee usrgxp, wnnnh ify bk itfljcety hizm paim noxwpsvtydkse.\n\n\nPtsatsps Zwttnjxiax\nJohannes Trithemius\n\nKEY: J -> P [G]\n\t O -> T [F]\n\t H -> S [L]\n\t A -> A [A]\n\t N -> T [G]\n\t N -> S [F]\n\t E -> P [L]\n\n\npohzCZK\npicoCTF\n\nAGFLAGF\n",
+			"--",
+			" ]",
+			"0 1 2 3 4 5",
+			" \\n\\n",
+			"con",
+			"^\\n",
+			"@@.*",
+			"\\n",
+			"\"",
+			"dup",
+			"pipe",
+			"close",
+			"execve",
+			"close",
+			"open",
+			"\\n",
+			"\"",
+			"\\s",
+			"\\t",
+			"\"",
+			" ",
+			"\\n",
+			"$",
+			"\\n",
+			"\"",
+			"==",
+			"&&",
+			")",
+			"bandit13",
+			"_make",
+			"requests.",
+			"self.esi",
+			"resolve_names",
+			"params",
+			"params=",
+			"_make_get_request",
+			"_make_get",
+			"ids = []",
+			"IDS_REQUEST",
+			"self.name_to_id",
+			"ORDERS_",
+			"get_commodity",
+			"commodity",
+			"get_commodity",
+			"PRICES_REQUEST",
+			"name_to_id",
+			"self.name_to_id",
+			"save",
+			", ",
+			"_resolve_ids_to_names",
+			"_download_regions",
+			"titanium",
+			"carbonized",
+			"_resolve_ids_to_names",
+			"ids_to_names",
+			"resolve",
+			"EveData",
+			"verbose",
+			"print(",
+			"prices",
+			"market_data",
+			"MarketData",
+			"cache_file",
+			"\")",
+			"f\"",
+			"65g",
+			"grid_coord",
+			"points_input",
+			"check",
+			"Critical",
+			"TREE",
+			"remove_node",
+			"scene_remove_node",
+			"Remove\"",
+			"change_parent",
+			"node_terminate",
+			"selected_node",
+			"scene_add_sprite_node",
+			"node_init",
+			"node_terminate",
+			"add_node",
+			"gui_make_tree",
+			"scene_get_node_by_id",
+			"ShowDemoWindow",
+			"ShowDemoWindow() ",
+			"ShowDemoWindow()",
+			"TreeNodeEx",
+			"TreeNodeFlags",
+			"TreeNode",
+			"treeNode",
+			"tree",
+			"Tree",
+			"node_init",
+			"selected_node",
+			"add_spri",
+			"scene_add_node",
+			"Tree",
+			"get_node_by_id",
+			"add_sprite_node",
+			"get_node_by_id",
+			"gui.selected_node_id",
+			"get_node_by_id",
+			"ImVec2",
+			"INVALID_node_id_t",
+			"node_id",
+			"node_it",
+			"node_id",
+			"selected_node_id_t",
+			"node_id",
+			"const",
+			"Selectable(",
+			"ImGuiTreeNodeFlags",
+			"Trees",
+			"ShowDemoWindow(",
+			"ShowDemoWindow",
+			"    //",
+			"Tree",
+			"window",
+			"scene_init",
+			"scene_add_sprite",
+			"\n'\\",
+			"'",
+			"\n'\\",
+			"  |",
+			"fprintf(stderr"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"tytuł",
+			"-=",
+			"",
+			",",
+			"",
+			"self.esi_proxy",
+			"",
+			"self.esi_proxy",
+			",\\n",
+			"MarketData",
+			"eve_data",
+			"EveData",
+			"filename",
+			"')",
+			"f'",
+			"coord",
+			"test_input",
+			"end",
+			"INVALID_NODE_ID",
+			"node_id_t",
+			"selected_node_id",
+			"",
+			"node_id_t",
+			"log_error(LOG_MAIN",
+			"addr",
+			"input",
+			"offset",
+			"m4_at",
+			"m4_at(",
+			"m4_at",
+			"(*dst",
+			"scene_process_gui",
+			"make",
+			"$(arname)",
+			"$(type.name)",
+			"True",
+			"$(type.name)",
+			"uint8_t",
+			"uint16_t",
+			"window_create",
+			"",
+			"window."
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "design",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1197,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								816,
+								816
+							]
+						],
+						"settings":
+						{
+							"auto_name": "design",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "zamek-cli.nim",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 27,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								27,
+								27
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/NimLime/Syntaxes/Nim.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "zamek.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 45,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								35,
+								35
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/drabard/.config/sublime-text-3/Packages/User/zamek.sublime-build",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 31,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								31,
+								31
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "build.sh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								19,
+								19
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ShellScript/Bash.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 126.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/zamek.sublime-build",
+	"project": "zamek.sublime-project",
+	"replace":
+	{
+		"height": 70.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"zamek-cl",
+				"zamek-cli.nim"
+			],
+			[
+				"postacie",
+				"social/games/rpg/pathfinder/adventures/szczęśliwa_rodzina/postacie"
+			],
+			[
+				"comp",
+				"social/tmp/computor_parts"
+			],
+			[
+				"start",
+				"start"
+			],
+			[
+				"meditation",
+				"spirit/meditation.md"
+			],
+			[
+				"refeen",
+				"mind/thoughts/references"
+			],
+			[
+				"refe",
+				"mind/thoughts/references"
+			],
+			[
+				"work",
+				"mind/work_log"
+			],
+			[
+				"done",
+				"done"
+			],
+			[
+				"medi",
+				"spirit/meditation.md"
+			],
+			[
+				"self",
+				"body/climbing/self-assesment"
+			],
+			[
+				"ref",
+				"thoughts/references"
+			],
+			[
+				"work_log",
+				"projects/work_log"
+			],
+			[
+				"project",
+				"projects/project_ideas.md"
+			],
+			[
+				"inbox",
+				"inbox.md"
+			],
+			[
+				"reference",
+				"tech/isec/isec_reference"
+			],
+			[
+				"current",
+				"projects/current_project.md"
+			],
+			[
+				"eve_data",
+				"games/eve/scripts/eve_data.py"
+			],
+			[
+				"pathfinder_notes",
+				"games/rpg/pathfinder_notes"
+			],
+			[
+				"pathfinder_rules",
+				"games/rpg/pathfinder_rules"
+			],
+			[
+				"exercise_plan",
+				"body/exercise_plan.md"
+			],
+			[
+				"journa",
+				"thoughts/journal.md"
+			],
+			[
+				"jou",
+				"thoughts/journal.md"
+			],
+			[
+				"inbox.md",
+				"inbox.md"
+			],
+			[
+				"node.h",
+				"client/src/node.h"
+			],
+			[
+				"node.cpp",
+				"client/src/node.cpp"
+			],
+			[
+				"scene.cpp",
+				"client/src/scene.cpp"
+			],
+			[
+				"scene.h",
+				"client/src/scene.h"
+			],
+			[
+				"imgui",
+				"deps/imgui-1.65/imgui_demo.cpp"
+			],
+			[
+				"imgui.cpp",
+				"deps/imgui-1.65/imgui.cpp"
+			],
+			[
+				"imgui.h",
+				"deps/imgui-1.65/imgui.h"
+			],
+			[
+				"build.sh",
+				"build.sh"
+			],
+			[
+				"compi",
+				"scripts/compile_all_templates.sh"
+			],
+			[
+				"main.cpp",
+				"client/src/main.cpp"
+			],
+			[
+				"compile",
+				"scripts/compile_all_templates.sh"
+			],
+			[
+				"log.cpp",
+				"client/src/log.cpp"
+			],
+			[
+				"rendering.cpp",
+				"client/src/rendering.cpp"
+			],
+			[
+				"network.cpp",
+				"client/src/network.cpp"
+			],
+			[
+				"file.h",
+				"client/src/file.h"
+			],
+			[
+				"file.cpp",
+				"client/src/file.cpp"
+			],
+			[
+				"jsmn.h",
+				"deps/jsmn-1.0.0/jsmn.h"
+			],
+			[
+				"jsmn.c",
+				"deps/jsmn-1.0.0/jsmn.c"
+			],
+			[
+				"network.h",
+				"client/src/network.h"
+			],
+			[
+				"demo_imvis.cpp",
+				"~/code/demo_framework/demo/src/demo_imvis.cpp"
+			],
+			[
+				"round",
+				"round_table.sublime-project"
+			],
+			[
+				"build",
+				"build.sh"
+			],
+			[
+				"window.cpp",
+				"src/window.cpp"
+			],
+			[
+				"window.h",
+				"src/window.h"
+			],
+			[
+				"input.h",
+				"src/input.h"
+			],
+			[
+				"gui.cpp",
+				"src/gui.cpp"
+			],
+			[
+				"gui.h",
+				"src/gui.h"
+			],
+			[
+				"input.cpp",
+				"src/input.cpp"
+			],
+			[
+				"rendering.h",
+				"src/rendering.h"
+			],
+			[
+				"camera.c",
+				"deps/drb_graphics/src/camera.c"
+			],
+			[
+				"camera.h",
+				"deps/drb_graphics/include/drb_camera.h"
+			],
+			[
+				"drb_camera.h",
+				"deps/drb_graphics/include/drb_camera.h"
+			],
+			[
+				"drb_math.h",
+				"deps/drb_graphics/include/drb_math.h"
+			],
+			[
+				"gpu.c",
+				"deps/drb_graphics/src/gpu.c"
+			],
+			[
+				"graphics.c",
+				"deps/drb_graphics/src/graphics.c"
+			],
+			[
+				"deps/drb",
+				"deps/drb_graphics/build.sh"
+			],
+			[
+				"gpu.h",
+				"deps/drb_graphics/include/drb_gpu.h"
+			],
+			[
+				"drb_gpu.c",
+				"deps/drb_graphics/src/gpu.c"
+			],
+			[
+				"drb_gpu",
+				"deps/drb_graphics/include/drb_gpu.h"
+			],
+			[
+				"drb_graphics.h",
+				"deps/drb_graphics/include/drb_graphics.h"
+			],
+			[
+				"drb_gpu.h",
+				"deps/drb_graphics/include/drb_gpu.h"
+			],
+			[
+				"rend",
+				"src/rendering.cpp"
+			],
+			[
+				"drb_math",
+				"deps/drb_graphics/include/drb_math.h"
+			],
+			[
+				"math.h",
+				"deps/drb_graphics/include/drb_math.h"
+			],
+			[
+				"math.c",
+				"deps/drb_graphics/src/math.c"
+			],
+			[
+				"stb_image.h",
+				"src/stb_image.h"
+			],
+			[
+				"scene",
+				"src/scene.cpp"
+			],
+			[
+				"imvis.c",
+				"deps/drb_graphics/src/imvis.c"
+			],
+			[
+				"bui",
+				"build.sh"
+			],
+			[
+				"drb_graphics",
+				"deps/drb_graphics/include/drb_graphics.h"
+			],
+			[
+				"graphics.h",
+				"deps/drb_graphics/include/drb_graphics.h"
+			],
+			[
+				"",
+				"build.sh"
+			],
+			[
+				"array.cpp.tmpl",
+				"src/array.cpp.tmpl"
+			],
+			[
+				"array.cpp",
+				"src/array.cpp"
+			],
+			[
+				"array.tdef",
+				"src/array.tdef"
+			],
+			[
+				"array.h",
+				"src/array.h"
+			],
+			[
+				"array.h.tmpl",
+				"src/array.h.tmpl"
+			],
+			[
+				"buil",
+				"build.sh"
+			],
+			[
+				"demo.h",
+				"deps/imgui-1.65/imgui_impl_opengl3.h"
+			],
+			[
+				"main.c",
+				"src/main.c"
+			],
+			[
+				"bui\t",
+				"build.sh"
+			],
+			[
+				"not",
+				"notes"
+			],
+			[
+				"game_flow",
+				"src/game_flow.inl"
+			],
+			[
+				"string_id",
+				"src/string_id.c"
+			],
+			[
+				"string_id.h",
+				"src/string_id.h"
+			],
+			[
+				"reosur",
+				"src/resources_storage.h"
+			],
+			[
+				"resou",
+				"src/resources_storage.c.tmpl"
+			],
+			[
+				"resources_storage.c",
+				"src/resources_storage.c"
+			],
+			[
+				"rs",
+				"src/resources_storage.h"
+			],
+			[
+				"graphics_storage.c",
+				"src/graphics_storage.c"
+			],
+			[
+				"graphics_storage.h",
+				"src/graphics_storage.h"
+			],
+			[
+				"resources",
+				"src/resources.h"
+			],
+			[
+				"resources_storage",
+				"src/resources_storage.c"
+			],
+			[
+				"resources_stora",
+				"src/resources_storage.c"
+			],
+			[
+				"resources_storage.h",
+				"src/resources_storage.h"
+			],
+			[
+				"resources_storage.tmpl",
+				"src/resources_storage.c.tmpl"
+			],
+			[
+				"notes",
+				"notes"
+			],
+			[
+				"game_flow.inl",
+				"src/game_flow.inl"
+			],
+			[
+				"resources_storage.c.tmpl",
+				"src/resources_storage.c.tmpl"
+			],
+			[
+				"game_state.",
+				"src/game_state.inl"
+			],
+			[
+				"graphics_stora",
+				"src/graphics_storage.c.tmpl"
+			],
+			[
+				"graphics_storage.c.tmpl",
+				"src/graphics_storage.c.tmpl"
+			],
+			[
+				"graphics_sto",
+				"src/graphics_storage.h"
+			],
+			[
+				"graphics_storage",
+				"src/graphics_storage.c.tmpl"
+			],
+			[
+				"graphics",
+				"src/graphics_storage.h"
+			],
+			[
+				"entity.h",
+				"src/entity.h"
+			],
+			[
+				"graphics_",
+				"src/graphics_storage.h"
+			],
+			[
+				"resources.",
+				"src/resources_storage.c.tmpl"
+			],
+			[
+				"hashmap.h",
+				"src/hashmap.h"
+			],
+			[
+				"resources_s",
+				"src/resources_storage.c.tmpl"
+			],
+			[
+				"resource_storage.c.tmpl",
+				"src/resources_storage.c.tmpl"
+			],
+			[
+				"game_State",
+				"src/game_state.inl"
+			],
+			[
+				"resources.c",
+				"src/resources.c"
+			],
+			[
+				"freelist",
+				"src/freelist.c"
+			],
+			[
+				"freelist.h",
+				"src/freelist.h"
+			],
+			[
+				"res",
+				"src/resources_storage.c"
+			],
+			[
+				"hashmap.c",
+				"src/hashmap.c"
+			],
+			[
+				"game_flo",
+				"src/game_flow.inl"
+			],
+			[
+				"hash",
+				"src/hashmap.h"
+			],
+			[
+				"resources.h",
+				"src/resources.h"
+			],
+			[
+				"game.c",
+				"src/game.c"
+			],
+			[
+				"freelist.c",
+				"src/freelist.c"
+			],
+			[
+				"compile_template",
+				"compile_template.sh"
+			],
+			[
+				"compile_",
+				"compile_all_templates.sh"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/code/website/website.sublime-project"
+			],
+			[
+				"web",
+				"~/code/website/website.sublime-project"
+			],
+			[
+				"website",
+				"~/code/website/website.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 342.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ImGui_ImplGlfw_New",
+				"ImGui_ImplGlfw_NewFrame"
+			],
+			[
+				"ImGui_ImplOPENG",
+				"ImGui_ImplOpenGL3_NewFrame"
+			],
+			[
+				"ImGuiImplGlfw",
+				"ImGui_ImplGlfw_Init"
+			],
+			[
+				"ImGuiIO",
+				"ImGuiIO"
+			],
+			[
+				"size_t",
+				"size_t"
+			],
+			[
+				"gfx_mesh_create",
+				"gfx_mesh_create"
+			]
+		],
+		"width": 574.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 320.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
