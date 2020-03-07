@@ -1,12 +1,10 @@
 import os
 import parseopt
+import zamek
 
 type
   Command = enum
     none, create, add, remove, edit, tag_add, tag_remove, find, find_by_tags, find_connected
-  Setting = enum
-    verbose
-  Settings = set[Setting]
 
 proc handleInvalidParams() =
   echo """usage: zamek [--verbose] [--help] <command> [<args>]
@@ -23,7 +21,7 @@ Commands:
   find-connected"""
   quit(QuitFailure)
 
-proc processCommandLine() : (Command, Settings) =
+proc processCommandLine() : (Command, zamek.Settings) =
   var args = initOptParser(commandLineParams())  
 
   var command = Command.none
@@ -54,7 +52,7 @@ proc processCommandLine() : (Command, Settings) =
     of cmdLongOption, cmdShortOption:
       case key
       of "verbose", "v":
-        incl(settings, Setting.verbose)
+        incl(settings, zamek.SettingFlag.verbose)
     else:
       handleInvalidParams()
 
@@ -65,6 +63,37 @@ proc processCommandLine() : (Command, Settings) =
 
 let (command, settings) = processCommandLine()
 
-if Setting.verbose in settings:
+if zamek.SettingFlag.verbose in settings:
   echo "Verbose mode on!"
   echo "Running command: ", command
+
+case command
+of none:
+  assert(false, "If no command is set, should exit early - nothing to do.")
+of create:
+  # 1 verify if this is a valid place for starting a Zamek repository
+  # 2 backup current zamek registry file if it exists
+  # 3 create a Zamek registry instance
+  # 4 add all the .znotes present in the directory to the registry
+  # 5 save the new registry
+  var z = new(Zamek)
+  if zamek.create(z):
+    echo "Creation successful."
+  else:
+    echo "Creation failed."
+of add:
+  discard
+of remove:
+  discard
+of edit:
+  discard
+of tag_add:
+  discard
+of tag_remove:
+  discard
+of find:
+  discard
+of find_by_tags:
+  discard
+of find_connected:
+  discard
