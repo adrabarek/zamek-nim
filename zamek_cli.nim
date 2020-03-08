@@ -72,6 +72,9 @@ of none:
   assert(false, "If no command is set, should exit early - nothing to do.")
 of create:
   # 1 verify if this is a valid place for starting a Zamek repository
+  if not zamek.validateDirectory(getCurrentDir()):
+    echo "Zamek repository needs to be created in an empty directory."
+    quit(QuitFailure)
   # 2 backup current zamek registry file if it exists
   # 3 create a Zamek registry instance
   # 4 add all the .znotes present in the directory to the registry

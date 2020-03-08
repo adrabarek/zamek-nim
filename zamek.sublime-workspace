@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Setting",
+				"SettingFlag"
+			],
+			[
 				"list-st",
 				"list-style-type\tproperty"
 			],
@@ -23,6 +27,32 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "zamek.sublime-project",
+			"settings":
+			{
+				"buffer_size": 45,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "zamek_cli.nim",
+			"settings":
+			{
+				"buffer_size": 2175,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "zamek.nim",
+			"settings":
+			{
+				"buffer_size": 666,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Script",
 	"build_system_choices":
@@ -112,7 +142,7 @@
 	},
 	"expanded_folders":
 	[
-		"/home/drabard/code/zettelkasten"
+		"/home/drabard/code/zamek"
 	],
 	"file_history":
 	[
@@ -449,8 +479,97 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "zamek.sublime-project",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 45,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								20,
+								20
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "zamek_cli.nim",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2175,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1959,
+								1959
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/NimLime/Syntaxes/Nim.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 969.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "zamek.nim",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 666,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9,
+								9
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/NimLime/Syntaxes/Nim.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -506,6 +625,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"zamek",
+				"zamek_cli.nim"
+			],
 			[
 				"zamek.nim",
 				"zamek.nim"
@@ -1013,10 +1136,6 @@
 			[
 				"freelist.c",
 				"src/freelist.c"
-			],
-			[
-				"compile_template",
-				"compile_template.sh"
 			]
 		],
 		"width": 0.0

@@ -1,6 +1,6 @@
 import os
 
-# registry naming: zamek.zreg
+# registry naming: .zamek
 # note naming: <name>.znot
 
 type
@@ -9,10 +9,14 @@ type
   Settings* = set[SettingFlag]
   Zamek* = ref object
 
+proc validateDirectory*(path: string) : bool =
+  for path in walkPattern("*"):
+    var (_, _, ext) = splitFile(path)
+    if ext != "znot" and ext != "zreg":
+      return false  
+  return true
+
 proc create*(z: var Zamek) : bool =
   for path in walkPattern("*"):
-    var (dir, name, ext) = splitFile(path)
-    if ext != "znot" and ext != "zreg":
-      echo "The directory has files in it that are not zamek files."
-      return false
+    discard
   return true
