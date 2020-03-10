@@ -2,6 +2,9 @@ import os
 
 # registry naming: .zamek
 # note naming: <name>.znot
+const dirName* = ".zamek"
+const regFileName* = "registry"
+const noteExtension* = ".znot"
 
 type
   SettingFlag* = enum

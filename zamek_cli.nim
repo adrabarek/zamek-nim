@@ -1,5 +1,4 @@
-import os
-import parseopt
+import os, parseopt, times
 import zamek
 
 type
@@ -61,42 +60,72 @@ proc processCommandLine() : (Command, zamek.Settings) =
 
   (command, settings)
 
-let (command, settings) = processCommandLine()
+proc doCreate() =
+  let zamekDir = joinPath(getCurrentDir(), zamek.dirName)
+  let regFilePath = joinPath(zamekDir, zamek.regFileName)
 
-if zamek.SettingFlag.verbose in settings:
-  echo "Verbose mode on!"
-  echo "Running command: ", command
-
-case command
-of none:
-  assert(false, "If no command is set, should exit early - nothing to do.")
-of create:
-  # 1 verify if this is a valid place for starting a Zamek repository
+  # verify if this is a valid place for starting a Zamek repository
   if not zamek.validateDirectory(getCurrentDir()):
     echo "Zamek repository needs to be created in an empty directory."
     quit(QuitFailure)
-  # 2 backup current zamek registry file if it exists
+
+  if not dirExists(zamekDir):
+    createDir(zamekDir)
+
+  # backup current zamek registry file if it exists
+  if fileExists(regFilePath):
+    echo "Registry file already exists!"
+
+    var nTries = 0
+    const maxTries = 10
+    while nTries < maxTries:
+      let regBackupPath = joinPath(getCurrentDir(), zamek.dirName, zamek.regFileName & "_backup" & $(now().format("yyyy-MM-dd")) & "_" & $(nTries))
+      if not fileExists(regBackupPath):
+        moveFile(regFilePath, regBackupPath)
+        break
+      nTries += 1
+
+    if(nTries == maxTries):
+      echo "Could not create repository - too many registry file backups. Remove some of .zamek/registry_backup files."
+      quit(QuitFailure)
+    
   # 3 create a Zamek registry instance
-  # 4 add all the .znotes present in the directory to the registry
-  # 5 save the new registry
   var z = new(Zamek)
   if zamek.create(z):
     echo "Creation successful."
   else:
     echo "Creation failed."
-of add:
-  discard
-of remove:
-  discard
-of edit:
-  discard
-of tag_add:
-  discard
-of tag_remove:
-  discard
-of find:
-  discard
-of find_by_tags:
-  discard
-of find_connected:
-  discard
+  # 4 add all the .znotes present in the directory to the registry
+  # 5 save the new registry
+  writeFile(regFilePath, "")
+
+proc main() =
+  let (command, settings) = processCommandLine()
+
+  if zamek.SettingFlag.verbose in settings:
+    echo "Verbose mode on!"
+    echo "Running command: ", command
+
+  case command
+  of none:
+    assert(false, "If no command is set, should exit early - nothing to do.")
+  of create:
+    doCreate()
+  of add:
+    discard
+  of remove:
+    discard
+  of edit:
+    discard
+  of tag_add:
+    discard
+  of tag_remove:
+    discard
+  of find:
+    discard
+  of find_by_tags:
+    discard
+  of find_connected:
+    discard
+
+main()
