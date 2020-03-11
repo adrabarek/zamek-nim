@@ -49,7 +49,7 @@ proc processCommandLine() : (Command, zamek.Settings) =
       of "find-connected":
         command = Command.find_connected
     of cmdLongOption, cmdShortOption:
-      case key
+      case key:
       of "verbose", "v":
         incl(settings, zamek.SettingFlag.verbose)
     else:
@@ -60,43 +60,50 @@ proc processCommandLine() : (Command, zamek.Settings) =
 
   (command, settings)
 
+proc validateDirectory(path: string): bool = 
+  for path in walkPattern(path & "/*"):
+    var (_, _, ext) = splitFile(path)
+    if ext != zamek.noteExtension:
+      return false  
+  return true
+
+proc backupFile(path: string, maxBackups: int): bool =
+    var nTries = 0
+    while nTries < maxBackups:
+      let backupPath = path & "_backup" & $(now().format("yyyy-MM-dd")) & "_" & $(nTries)
+      if not fileExists(backupPath):
+        moveFile(path, backupPath)
+        break
+      inc nTries
+    if(nTries == maxBackups):
+      return false
+    return true
+
 proc doCreate() =
   let zamekDir = joinPath(getCurrentDir(), zamek.dirName)
   let regFilePath = joinPath(zamekDir, zamek.regFileName)
 
   # verify if this is a valid place for starting a Zamek repository
-  if not zamek.validateDirectory(getCurrentDir()):
+  if not validateDirectory(getCurrentDir()):
     echo "Zamek repository needs to be created in an empty directory."
     quit(QuitFailure)
 
+  # create zamek control directory if doesn't exist yet
   if not dirExists(zamekDir):
     createDir(zamekDir)
 
-  # backup current zamek registry file if it exists
+  # backup current zamek registry file if already exists
   if fileExists(regFilePath):
-    echo "Registry file already exists!"
-
-    var nTries = 0
-    const maxTries = 10
-    while nTries < maxTries:
-      let regBackupPath = joinPath(getCurrentDir(), zamek.dirName, zamek.regFileName & "_backup" & $(now().format("yyyy-MM-dd")) & "_" & $(nTries))
-      if not fileExists(regBackupPath):
-        moveFile(regFilePath, regBackupPath)
-        break
-      nTries += 1
-
-    if(nTries == maxTries):
-      echo "Could not create repository - too many registry file backups. Remove some of .zamek/registry_backup files."
+    const maxBackups = 10
+    if not backupFile(regFilePath, maxBackups):
+      echo "Failed to backup registry file " & regFilePath
+      echo "Remove some of the backups under " & zamekDir & " and try again."
       quit(QuitFailure)
     
-  # 3 create a Zamek registry instance
-  var z = new(Zamek)
-  if zamek.create(z):
-    echo "Creation successful."
-  else:
-    echo "Creation failed."
-  # 4 add all the .znotes present in the directory to the registry
-  # 5 save the new registry
+  var registry = new(zamek.Registry)
+  for file in walkPattern(getCurrentDir() & "/*"):
+    echo file
+
   writeFile(regFilePath, "")
 
 proc main() =

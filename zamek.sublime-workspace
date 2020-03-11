@@ -40,16 +40,17 @@
 			"file": "zamek_cli.nim",
 			"settings":
 			{
-				"buffer_size": 2319,
+				"buffer_size": 3208,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "",
+			"file": ".gitignore",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 20,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -57,7 +58,7 @@
 			"file": "zamek.nim",
 			"settings":
 			{
-				"buffer_size": 444,
+				"buffer_size": 533,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -286,7 +287,7 @@
 	],
 	"find":
 	{
-		"height": 26.0
+		"height": 39.0
 	},
 	"find_in_files":
 	{
@@ -301,6 +302,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"create",
 			"shell",
 			"title",
 			"Encrypted message:\nNe iy nytkwpsznyg nth it mtsztcy vjzprj zfzjy rkhpibj nrkitt ltc tnnygy ysee itd tte cxjltk\n\nIfrosr tnj noawde uk siyyzre, yse Bnretèwp Cousex mls hjpn xjtnbjytki xatd eisjd\n\nIz bls lfwskqj azycihzeej yz Brftsk ip Volpnèxj ls oy hay tcimnyarqj dkxnrogpd os 1553 my Mnzvgs Mazytszf Merqlsu ny hox moup Wa inqrg ipl. Ynr. Gotgat Gltzndtg Gplrfdo \n\nLtc tnj tmvqpmkseaznzn uk ehox nivmpr g ylbrj ts ltcmki my yqtdosr tnj wocjc hgqq ol fy oxitngwj arusahje fuw ln guaaxjytrd catizm tzxbkw zf vqlckx hizm ceyupcz yz tnj fpvjc hgqqpohzCZK{m311a50_0x_a1rn3x3_h1ah3xf653pdkh}\n\nEhk ktryy herq-ooizxetypd jjdcxnatoty ol f aordllvmlbkytc inahkw socjgex, bls sfoe gwzuti 1467 my Rjzn Hfetoxea Gqmexyt.\n\nTnj Gimjyèrk Htpnjc iy ysexjqoxj dosjeisjd cgqwej yse Gqmexyt Doxn ox Fwbkwei Inahkw.\n\nTn 1508, Ptsatsps Zwttnjxiax tnbjytki ehk xz-cgqwej ylbaql rkhea (g rltxni ol xsilypd gqahggpty) ysaz bzuri wazjc bk f nroytcgq nosuznkse ol yse Bnretèwp Cousex.\n\nGplrfdo’y xpcuso butvlky lpvjlrki tn 1555 gx l cuseitzltoty ol yse lncsz. Yse rthex mllbjd ol yse gqahggpty fce tth snnqtki cemzwaxqj, bay ehk fwpnfmezx lnj yse osoed qptzjcs gwp mocpd hd xegsd ol f xnkrznoh vee usrgxp, wnnnh ify bk itfljcety hizm paim noxwpsvtydkse.\n\n\nPtsatsps Zwttnjxiax\nJohannes Trithemius\n\nKEY: J -> P [G]\n\t O -> T [F]\n\t H -> S [L]\n\t A -> A [A]\n\t N -> T [G]\n\t N -> S [F]\n\t E -> P [L]\n\n\npohzCZK\npicoCTF\n\nAGFLAGF\n",
@@ -427,8 +429,7 @@
 			"\n'\\",
 			"'",
 			"\n'\\",
-			"  |",
-			"fprintf(stderr"
+			"  |"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -488,7 +489,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -516,7 +517,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -525,15 +526,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2319,
+						"buffer_size": 3208,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1841,
-								1841
+								2005,
+								2005
 							]
 						],
 						"settings":
@@ -543,38 +544,38 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 663.0,
+						"translation.y": 1071.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
+					"file": ".gitignore",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 20,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								20,
+								20
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Git Formats/Git Ignore.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -583,15 +584,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 444,
+						"buffer_size": 533,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								350,
-								350
+								108,
+								108
 							]
 						],
 						"settings":
@@ -604,7 +605,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -662,6 +663,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				".git",
+				".gitignore"
+			],
 			[
 				"zamek",
 				"zamek_cli.nim"
@@ -1169,10 +1174,6 @@
 			[
 				"game.c",
 				"src/game.c"
-			],
-			[
-				"freelist.c",
-				"src/freelist.c"
 			]
 		],
 		"width": 0.0

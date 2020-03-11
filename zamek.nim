@@ -1,5 +1,3 @@
-import os
-
 # registry naming: .zamek
 # note naming: <name>.znot
 const dirName* = ".zamek"
@@ -10,16 +8,17 @@ type
   SettingFlag* = enum
     verbose
   Settings* = set[SettingFlag]
-  Zamek* = ref object
+  Note* = object
+    name: string
+    content: string
+    tags: seq[string]
+    links: seq[string]
+  Registry* = object
+    notes: seq[Note]
 
-proc validateDirectory*(path: string) : bool =
-  for path in walkPattern("*"):
-    var (_, _, ext) = splitFile(path)
-    if ext != "znot" and ext != "zreg":
-      return false  
+proc initRegistry*(registry: ref Registry): bool =
   return true
 
-proc create*(z: var Zamek) : bool =
-  for path in walkPattern("*"):
-    discard
+proc addNote*(registry: ref Registry, note: Note): bool =
+  registry.notes.add(note)
   return true
