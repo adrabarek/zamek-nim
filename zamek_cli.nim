@@ -1,4 +1,4 @@
-import os, parseopt, times
+import os, parseopt, times, marshal
 import zamek
 
 type
@@ -119,7 +119,12 @@ proc main() =
   of create:
     doCreate()
   of add:
-    discard
+    let test0 = Note(name: "test_note_0", content: "Test content. This can be markdown or something", tags: @["cow", "dog", "badger"], links: @["test_note_2"])
+    let test1 = Note(name: "test_note_1", content: "Test content. Another note.", tags: @["cow", "horse"], links: @["test_note_2"])
+    let test2 = Note(name: "test_note_2", content: "Test content. Yet another one.", tags: @["dog", "horse"], links: @["test_note_0", "test_note_1"])
+    writeFile(test0.name & zamek.noteExtension, $$test0)
+    writeFile(test1.name & zamek.noteExtension, $$test1)
+    writeFile(test2.name & zamek.noteExtension, $$test2)
   of remove:
     discard
   of edit:

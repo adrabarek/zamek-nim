@@ -9,10 +9,10 @@ type
     verbose
   Settings* = set[SettingFlag]
   Note* = object
-    name: string
-    content: string
-    tags: seq[string]
-    links: seq[string]
+    name*: string
+    content*: string
+    tags*: seq[string]
+    links*: seq[string]
   Registry* = object
     notes: seq[Note]
 
