@@ -85,12 +85,23 @@ proc doCreate() =
 
   # verify if this is a valid place for starting a Zamek repository
   if not validateDirectory(getCurrentDir()):
-    echo "Zamek repository needs to be created in an empty directory."
+    echo "Zamek repository needs to be created in an empty directory or a previous Zamek repository."
     quit(QuitFailure)
 
   # create zamek control directory if doesn't exist yet
   if not dirExists(zamekDir):
     createDir(zamekDir)
+
+  # create the registry
+  var registry: zamek.Registry
+  for file in walkPattern(getCurrentDir() & "/*"):
+    # add note to the registry
+    var note = to[Note](readFile(file))
+    if not registry.addNote(note):
+      echo "Failed to add note " & note.name & " to the registry!"
+      quit(QuitFailure)
+    # make the note file read-only
+    setFilePermissions(file, {fpUserRead, fpGroupRead, fpOthersRead})
 
   # backup current zamek registry file if already exists
   if fileExists(regFilePath):
@@ -99,12 +110,9 @@ proc doCreate() =
       echo "Failed to backup registry file " & regFilePath
       echo "Remove some of the backups under " & zamekDir & " and try again."
       quit(QuitFailure)
-    
-  var registry = new(zamek.Registry)
-  for file in walkPattern(getCurrentDir() & "/*"):
-    echo file
 
-  writeFile(regFilePath, "")
+  # save the registry file
+  writeFile(regFilePath, $$registry)
 
 proc main() =
   let (command, settings) = processCommandLine()

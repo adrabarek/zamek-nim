@@ -1,3 +1,5 @@
+import tables
+
 # registry naming: .zamek
 # note naming: <name>.znot
 const dirName* = ".zamek"
@@ -8,17 +10,29 @@ type
   SettingFlag* = enum
     verbose
   Settings* = set[SettingFlag]
+  NoteName = string
+  Tag = string
   Note* = object
     name*: string
     content*: string
-    tags*: seq[string]
-    links*: seq[string]
+    tags*: seq[Tag]
+    links*: seq[NoteName]
   Registry* = object
-    notes: seq[Note]
+    links : Table[NoteName, seq[NoteName]]
+    tags : Table[Tag, seq[NoteName]]
 
-proc initRegistry*(registry: ref Registry): bool =
-  return true
 
-proc addNote*(registry: ref Registry, note: Note): bool =
-  registry.notes.add(note)
-  return true
+proc addNote*(registry: var Registry, note: Note): bool =
+   for tag in note.tags:
+    if tag in registry.tags:
+      registry.tags[tag].add(note.name)
+    else:
+      registry.tags[tag] = @[note.name]
+
+    for otherNote in note.links:
+      if note.name in registry.links:
+        registry.links[note.name].add(otherNote)
+      else:
+        registry.links[note.name] = @[otherNote]
+
+    return true

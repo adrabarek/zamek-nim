@@ -40,7 +40,7 @@
 			"file": "zamek_cli.nim",
 			"settings":
 			{
-				"buffer_size": 3208,
+				"buffer_size": 4203,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -58,7 +58,7 @@
 			"file": "zamek.nim",
 			"settings":
 			{
-				"buffer_size": 533,
+				"buffer_size": 477,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -95,6 +95,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
 			[
 				"Install Package",
 				"Package Control: Install Package"
@@ -156,6 +164,7 @@
 	],
 	"file_history":
 	[
+		"/home/drabard/code/zamek/zamek.nim",
 		"/home/drabard/code/zettelkasten/zamek_cli.nim",
 		"/home/drabard/code/zettelkasten/zamek.nim",
 		"/home/drabard/code/zettelkasten/zamek.sublime-project",
@@ -282,8 +291,7 @@
 		"/home/drabard/notes/routines/software_design.md",
 		"/home/drabard/notes/routines/focused_work.md",
 		"/home/drabard/code/power_grid/power_grid.py",
-		"/home/drabard/code/flask-tutorial/.gitignore",
-		"/home/drabard/code/power_grid/architecture.md"
+		"/home/drabard/code/flask-tutorial/.gitignore"
 	],
 	"find":
 	{
@@ -302,6 +310,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"registry",
+			"Zamek",
+			"$",
 			"create",
 			"shell",
 			"title",
@@ -426,10 +437,7 @@
 			"window",
 			"scene_init",
 			"scene_add_sprite",
-			"\n'\\",
-			"'",
-			"\n'\\",
-			"  |"
+			"\n'\\"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -517,7 +525,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -526,28 +534,29 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3208,
+						"buffer_size": 4203,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2005,
-								2005
+								2640,
+								2640
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/NimLime/Syntaxes/Nim.tmLanguage",
 							"tab_size": 2,
+							"touched": 1583933921.63,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1071.0,
+						"translation.y": 1292.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -575,24 +584,30 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
 					"buffer": 3,
 					"file": "zamek.nim",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 533,
+						"buffer_size": 477,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								108,
-								108
+								311,
+								311
 							]
 						],
 						"settings":
@@ -605,7 +620,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -628,11 +643,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -654,7 +676,7 @@
 	"project": "zamek.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 70.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -664,16 +686,16 @@
 		"selected_items":
 		[
 			[
+				"zamek.nim",
+				"zamek.nim"
+			],
+			[
 				".git",
 				".gitignore"
 			],
 			[
 				"zamek",
 				"zamek_cli.nim"
-			],
-			[
-				"zamek.nim",
-				"zamek.nim"
 			],
 			[
 				"zamek-cl",
@@ -1232,14 +1254,14 @@
 		],
 		"width": 574.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 320.0,
 	"status_bar_visible": true,
 	"template_settings":
