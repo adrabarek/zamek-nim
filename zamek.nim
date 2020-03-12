@@ -1,7 +1,5 @@
 import tables
 
-# registry naming: .zamek
-# note naming: <name>.znot
 const dirName* = ".zamek"
 const regFileName* = "registry"
 const noteExtension* = ".znot"
@@ -22,7 +20,7 @@ type
     tags : Table[Tag, seq[NoteName]]
 
 
-proc addNote*(registry: var Registry, note: Note): bool =
+proc addNote*(registry: var Registry, note: Note) =
    for tag in note.tags:
     if tag in registry.tags:
       registry.tags[tag].add(note.name)
@@ -34,5 +32,3 @@ proc addNote*(registry: var Registry, note: Note): bool =
         registry.links[note.name].add(otherNote)
       else:
         registry.links[note.name] = @[otherNote]
-
-    return true

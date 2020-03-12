@@ -1,9 +1,13 @@
-import os, parseopt, times, marshal
+import os, parseopt, times, marshal, strutils
 import zamek
 
 type
   Command = enum
     none, create, add, remove, edit, tag_add, tag_remove, find, find_by_tags, find_connected
+  Arguments = seq[string]
+  Paths = object
+    zamekDir: string
+    registryFilePath: string
 
 proc handleInvalidParams() =
   echo """usage: zamek [--verbose] [--help] <command> [<args>]
@@ -11,6 +15,11 @@ proc handleInvalidParams() =
 Commands:
   create
   add
+    <name> <tags> <links> [<content>]
+    name - The name of the note. Best use snake_case convention.
+    tags - Comma separated list of tags, e. g. "tag0, tag1, tag2"
+    links - Comma separated list of note names to link to, e. g. "note0, note1, note2"
+    content - String containing content of the note. If not present, stdin is used.
   remove
   edit
   tag-add
@@ -20,10 +29,11 @@ Commands:
   find-connected"""
   quit(QuitFailure)
 
-proc processCommandLine() : (Command, zamek.Settings) =
+proc processCommandLine() : (Command, Arguments, zamek.Settings) =
   var args = initOptParser(commandLineParams())  
 
   var command = Command.none
+  var arguments: seq[string]
   var settings: Settings
 
   for kind, key, val in args.getopt():
@@ -48,6 +58,8 @@ proc processCommandLine() : (Command, zamek.Settings) =
         command = Command.find_by_tags
       of "find-connected":
         command = Command.find_connected
+      else:
+        arguments.add(key)
     of cmdLongOption, cmdShortOption:
       case key:
       of "verbose", "v":
@@ -58,14 +70,17 @@ proc processCommandLine() : (Command, zamek.Settings) =
   if command == Command.none:
     handleInvalidParams()
 
-  (command, settings)
+  (command, arguments, settings)
 
-proc validateDirectory(path: string): bool = 
+proc onlyZamekFilesPresent(path: string): bool = 
   for path in walkPattern(path & "/*"):
     var (_, _, ext) = splitFile(path)
     if ext != zamek.noteExtension:
-      return false  
+      return false
   return true
+
+proc isZamekDirectory(path: string): bool =
+  dirExists(joinPath(path, zamek.dirName)) and onlyZamekFilesPresent(path)
 
 proc backupFile(path: string, maxBackups: int): bool =
     var nTries = 0
@@ -79,60 +94,96 @@ proc backupFile(path: string, maxBackups: int): bool =
       return false
     return true
 
-proc doCreate() =
-  let zamekDir = joinPath(getCurrentDir(), zamek.dirName)
-  let regFilePath = joinPath(zamekDir, zamek.regFileName)
-
+proc doCreate(paths: Paths) =
   # verify if this is a valid place for starting a Zamek repository
-  if not validateDirectory(getCurrentDir()):
+  if not onlyZamekFilesPresent(getCurrentDir()):
     echo "Zamek repository needs to be created in an empty directory or a previous Zamek repository."
     quit(QuitFailure)
 
   # create zamek control directory if doesn't exist yet
-  if not dirExists(zamekDir):
-    createDir(zamekDir)
+  if not dirExists(paths.zamekDir):
+    createDir(paths.zamekDir)
 
   # create the registry
   var registry: zamek.Registry
   for file in walkPattern(getCurrentDir() & "/*"):
     # add note to the registry
     var note = to[Note](readFile(file))
-    if not registry.addNote(note):
-      echo "Failed to add note " & note.name & " to the registry!"
-      quit(QuitFailure)
+    registry.addNote(note)
     # make the note file read-only
     setFilePermissions(file, {fpUserRead, fpGroupRead, fpOthersRead})
 
   # backup current zamek registry file if already exists
-  if fileExists(regFilePath):
+  if fileExists(paths.registryFilePath):
     const maxBackups = 10
-    if not backupFile(regFilePath, maxBackups):
-      echo "Failed to backup registry file " & regFilePath
-      echo "Remove some of the backups under " & zamekDir & " and try again."
+    if not backupFile(paths.registryFilePath, maxBackups):
+      echo "Failed to backup registry file " & paths.registryFilePath
+      echo "Remove some of the backups under " & paths.zamekDir & " and try again."
       quit(QuitFailure)
 
   # save the registry file
-  writeFile(regFilePath, $$registry)
+  writeFile(paths.registryFilePath, $$registry)
+
+proc toSnakeCase(s: string): string =
+  toLowerAscii(strip(s)).replace(" ", "_")
+
+proc doAdd(paths: Paths, arguments: Arguments) =
+  # validate arguments
+  if len(arguments) != 4 and len(arguments) != 3:
+    echo "Wrong number of arguments for add command."
+    handleInvalidParams()
+
+  if not isZamekDirectory(getCurrentDir()):
+    echo "Not a valid Zamek directory. Initialize one using create command."
+    quit(QuitFailure)
+
+  var note: Note
+  note.name = toSnakeCase(arguments[0])
+
+  note.tags = arguments[1].split(", ")
+  for i, tag in note.tags:
+    note.tags[i] = toSnakeCase(tag)
+
+  note.links = arguments[2].split(", ")
+  for i, link in note.links:
+    note.links[i] = toSnakeCase(link)
+
+  if len(arguments) == 4:
+    # content comes from argument
+    note.content = arguments[3]
+  else:
+    # content comes from stdin
+    note.content = readAll(stdin)
+
+  let notePath = joinPath(getCurrentDir(), note.name & zamek.noteExtension)
+  writeFile(notePath, $$(note))
+  setFilePermissions(notePath, {fpUserRead, fpGroupRead, fpOthersRead})
+
+  var registry = to[zamek.Registry](readFile(paths.registryFilePath))
+  registry.addNote(note)
+  writeFile(paths.registryFilePath, $$(registry))
+
+proc createPaths(): Paths =
+  let zamekDir = joinPath(getCurrentDir(), zamek.dirName)
+  let registryFilePath = joinPath(zamekDir, zamek.regFileName)
+  Paths(zamekDir: zamekDir, registryFilePath: registryFilePath)
 
 proc main() =
-  let (command, settings) = processCommandLine()
+  let (command, arguments, settings) = processCommandLine()
 
   if zamek.SettingFlag.verbose in settings:
     echo "Verbose mode on!"
     echo "Running command: ", command
 
+  let paths = createPaths()
+
   case command
   of none:
     assert(false, "If no command is set, should exit early - nothing to do.")
   of create:
-    doCreate()
+    doCreate(paths)
   of add:
-    let test0 = Note(name: "test_note_0", content: "Test content. This can be markdown or something", tags: @["cow", "dog", "badger"], links: @["test_note_2"])
-    let test1 = Note(name: "test_note_1", content: "Test content. Another note.", tags: @["cow", "horse"], links: @["test_note_2"])
-    let test2 = Note(name: "test_note_2", content: "Test content. Yet another one.", tags: @["dog", "horse"], links: @["test_note_0", "test_note_1"])
-    writeFile(test0.name & zamek.noteExtension, $$test0)
-    writeFile(test1.name & zamek.noteExtension, $$test1)
-    writeFile(test2.name & zamek.noteExtension, $$test2)
+    doAdd(paths, arguments)
   of remove:
     discard
   of edit:
