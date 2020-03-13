@@ -1,4 +1,5 @@
 import tables
+import sets
 
 const dirName* = ".zamek"
 const regFileName* = "registry"
@@ -16,19 +17,17 @@ type
     tags*: seq[Tag]
     links*: seq[NoteName]
   Registry* = object
-    links : Table[NoteName, seq[NoteName]]
-    tags : Table[Tag, seq[NoteName]]
+    links : Table[NoteName, HashSet[NoteName]]
+    tags : Table[Tag, HashSet[NoteName]]
 
 
 proc addNote*(registry: var Registry, note: Note) =
-   for tag in note.tags:
-    if tag in registry.tags:
-      registry.tags[tag].add(note.name)
-    else:
-      registry.tags[tag] = @[note.name]
+    for tag in note.tags:
+      if tag notin registry.tags:
+        registry.tags[tag] = HashSet[NoteName]()
+      registry.tags[tag].incl(note.name)
 
     for otherNote in note.links:
-      if note.name in registry.links:
-        registry.links[note.name].add(otherNote)
-      else:
-        registry.links[note.name] = @[otherNote]
+      if note.name notin registry.links:
+        registry.links[note.name] = HashSet[NoteName]()
+      registry.links[note.name].incl(otherNote)

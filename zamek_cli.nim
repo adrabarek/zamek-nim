@@ -156,6 +156,9 @@ proc doAdd(paths: Paths, arguments: Arguments) =
     note.content = readAll(stdin)
 
   let notePath = joinPath(getCurrentDir(), note.name & zamek.noteExtension)
+  if fileExists(notePath):
+    echo "Cannot add note - note with that name already exists."
+    quit(QuitFailure)
   writeFile(notePath, $$(note))
   setFilePermissions(notePath, {fpUserRead, fpGroupRead, fpOthersRead})
 
