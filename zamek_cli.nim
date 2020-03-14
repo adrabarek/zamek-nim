@@ -82,7 +82,6 @@ proc processCommandLine() : (Command, Arguments, set[Option]) =
   (command, arguments, options)
 
 proc doAdd(arguments: Arguments) =
-  # validate arguments
   if len(arguments) != 4 and len(arguments) != 3:
     error("Wrong number of arguments for add command.")
     handleInvalidParams()
@@ -106,6 +105,12 @@ proc doAdd(arguments: Arguments) =
   if not zamek.addNote(getCurrentDir(), note):
     quit(QuitFailure)
 
+proc doRemove(arguments: Arguments) =
+  if len(arguments) != 1:
+    error("Wrong number of arguments for remove command.")
+    handleInvalidParams()
+
+  zamek.removeNote(getCurrentDir(), cleanUpString(arguments[0]))
 
 proc main() =
   let (command, arguments, options) = processCommandLine()
@@ -122,7 +127,7 @@ proc main() =
   of add:
     doAdd(arguments)
   of remove:
-    discard
+    doRemove(arguments)
   of edit:
     discard
   of tag_add:
