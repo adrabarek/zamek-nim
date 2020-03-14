@@ -1,10 +1,12 @@
-import os, parseopt, strutils
+import os, parseopt, strutils, logging
 import zamek
 
 type
   Command = enum
     none, create, add, remove, edit, tag_add, tag_remove, find, find_by_tags, find_connected
   Arguments = seq[string]
+  Option = enum
+    verbose
 
 proc handleInvalidParams() =
   echo """usage: zamek [--verbose] [--help] <command> [<args>]
@@ -26,12 +28,12 @@ Commands:
   find-connected"""
   quit(QuitFailure)
 
-proc processCommandLine() : (Command, Arguments, zamek.Settings) =
+proc processCommandLine() : (Command, Arguments, set[Option]) =
   var args = initOptParser(commandLineParams())  
 
   var command = Command.none
   var arguments: seq[string]
-  var settings: Settings
+  var options: set[Option]
 
   for kind, key, val in args.getopt():
     case kind
@@ -60,14 +62,14 @@ proc processCommandLine() : (Command, Arguments, zamek.Settings) =
     of cmdLongOption, cmdShortOption:
       case key:
       of "verbose", "v":
-        incl(settings, zamek.SettingFlag.verbose)
+        incl(options, Option.verbose)
     else:
       handleInvalidParams()
 
   if command == Command.none:
     handleInvalidParams()
 
-  (command, arguments, settings)
+  (command, arguments, options)
 
 proc toSnakeCase(s: string): string =
   toLowerAscii(strip(s)).replace(" ", "_")
@@ -75,7 +77,7 @@ proc toSnakeCase(s: string): string =
 proc doAdd(arguments: Arguments) =
   # validate arguments
   if len(arguments) != 4 and len(arguments) != 3:
-    echo "Wrong number of arguments for add command."
+    error("Wrong number of arguments for add command.")
     handleInvalidParams()
 
   var note: Note
@@ -101,20 +103,20 @@ proc doAdd(arguments: Arguments) =
 
 
 proc main() =
-  let (command, arguments, settings) = processCommandLine()
+  let (command, arguments, options) = processCommandLine()
 
-  if zamek.SettingFlag.verbose in settings:
-    echo "Verbose mode on!"
-    echo "Running command: ", command
+  addHandler(newConsoleLogger(if Option.verbose in options: lvlAll else: lvlError))
 
   case command
   of none:
     assert(false, "If no command is set, should exit early - nothing to do.")
   of create:
+    info("Trying to create a new Zamek repository.")
     if not zamek.createRepository(getCurrentDir()):
-      echo "Failed to create Zamek repository."
+      error("Failed to create Zamek repository.")
       quit(QuitFailure)
   of add:
+    info("Trying to add a new note to Zamek.")
     doAdd(arguments)
   of remove:
     discard

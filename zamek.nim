@@ -1,13 +1,10 @@
-import os, tables, sets, marshal, times
+import os, tables, sets, marshal, times, logging
 
 const dirName = ".zamek"
 const registryFileName = "registry"
 const noteExtension = ".znot"
 
 type
-  SettingFlag* = enum
-    verbose
-  Settings* = set[SettingFlag]
   NoteName = string
   Tag = string
   Note* = object
@@ -60,15 +57,17 @@ proc addNote(registry: var Registry, note: Note): bool =
       registry.links[note.name] = HashSet[NoteName]()
     registry.links[note.name].incl(otherNote)
 
+  return true
+
 proc addNote*(root: string, note: Note): bool =
     if not isZamekDirectory(root):
-      echo "Not a valid Zamek directory. Initialize one using create command."
+      error("Not a valid Zamek directory. Initialize one using create command.")
       return false
 
     let notePath = joinPath(root, note.name & zamek.noteExtension)
 
     if fileExists(notePath):
-      echo "Cannot add note - note with that name already exists."
+      error("Cannot add note - note with that name already exists.")
       return false
 
     writeFile(notePath, $$(note))
@@ -77,15 +76,18 @@ proc addNote*(root: string, note: Note): bool =
     let paths = createPaths(root)
     var registry = to[zamek.Registry](readFile(paths.registryFilePath))
     if not addNote(registry, note):
-      echo "Failed to add note to the registry."
+      error("Failed to add note to the registry.")
       return false
     writeFile(paths.registryFilePath, $$(registry))
+
+    info("Successfuly added Zamek note.")
+    return true
 
 proc createRepository*(root: string): bool =
   let paths = createPaths(root)
 
   if not onlyZamekFilesPresent(root):
-    echo "Zamek repository needs to be created in an empty directory or a previous Zamek repository."
+    error("Zamek repository needs to be created in an empty directory or a previous Zamek repository.")
     return false
 
   # create zamek control directory if doesn't exist yet
@@ -97,7 +99,7 @@ proc createRepository*(root: string): bool =
     # add note to the registry
     var note = to[Note](readFile(file))
     if not addNote(registry, note):
-      echo "Failed to add present note to new repository. Aborting."
+      error("Failed to add present note to new repository. Aborting.")
       return false
     # make the note file read-only
     setFilePermissions(file, {fpUserRead, fpGroupRead, fpOthersRead})
@@ -106,10 +108,12 @@ proc createRepository*(root: string): bool =
   if fileExists(paths.registryFilePath):
     const maxBackups = 10
     if not backupFile(paths.registryFilePath, maxBackups):
-      echo "Failed to backup registry file " & paths.registryFilePath
-      echo "Remove some of the backups under " & paths.zamekDir & " and try again."
+      error("Failed to backup registry file " & paths.registryFilePath)
+      error("Remove some of the backups under " & paths.zamekDir & " and try again.")
       return false
 
   # save the registry file
   writeFile(paths.registryFilePath, $$registry)
+
+  info("Successfuly created Zamek repository.")
   return true;
