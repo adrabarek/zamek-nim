@@ -32,6 +32,7 @@ proc backupFile(path: string, maxBackups: int): bool =
     while nTries < maxBackups:
       let backupPath = path & "_backup" & $(now().format("yyyy-MM-dd")) & "_" & $(nTries)
       if not fileExists(backupPath):
+        info("File \"", path, "\" backed up as \"", backupPath, "\"")
         moveFile(path, backupPath)
         break
       inc nTries
@@ -39,15 +40,8 @@ proc backupFile(path: string, maxBackups: int): bool =
       return false
     return true
 
-proc onlyZamekFilesPresent(path: string): bool = 
-  for path in walkPattern(path & "/*"):
-    var (_, _, ext) = splitFile(path)
-    if ext != zamek.noteExtension:
-      return false
-  return true
-
 proc isZamekDirectory(path: string): bool =
-  dirExists(joinPath(path, zamek.dirName)) and onlyZamekFilesPresent(path)
+  dirExists(joinPath(path, zamek.dirName))
 
 proc addNote(registry: var Registry, note: Note, root: string): bool =
   for otherNote in note.links:
@@ -98,16 +92,12 @@ proc addNote*(root: string, note: Note): bool =
 proc createRepository*(root: string): bool =
   let paths = createPaths(root)
 
-  if not onlyZamekFilesPresent(root):
-    error("Zamek repository needs to be created in an empty directory or a previous Zamek repository.")
-    return false
-
   # create zamek control directory if doesn't exist yet
   if not dirExists(paths.zamekDir):
     createDir(paths.zamekDir)
 
   var registry: zamek.Registry
-  for file in walkPattern(getCurrentDir() & "/*"):
+  for file in walkPattern(getCurrentDir() & "/*" & noteExtension):
     # add note to the registry
     var note = to[Note](readFile(file))
     if not registry.addNote(note, root):
@@ -120,8 +110,7 @@ proc createRepository*(root: string): bool =
   if fileExists(paths.registryFilePath):
     const maxBackups = 10
     if not backupFile(paths.registryFilePath, maxBackups):
-      error("Failed to backup registry file " & paths.registryFilePath)
-      error("Remove some of the backups under " & paths.zamekDir & " and try again.")
+      error("Failed to backup registry file ", paths.registryFilePath, ". The command will have no effect.")
       return false
 
   # save the registry file

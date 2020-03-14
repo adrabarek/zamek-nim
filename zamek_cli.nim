@@ -24,11 +24,12 @@ Commands:
   create
   add
     <name> <tags> <links> [<content>]
-    name - The name of the note. Best use snake_case convention.
-    tags - Comma separated list of tags, e. g. "tag0, tag1, tag2"
-    links - Comma separated list of note names to link to, e. g. "note0, note1, note2"
+    name    - The name of the note.
+    tags    - Comma separated list of tags, e. g. "tag0, tag1, tag2"
+    links   - Comma separated list of note names to link to, e. g. "note0, note1, note2"
     content - String containing content of the note. If not present, stdin is used.
   remove
+    <name>  - The name of the note to be removed.
   edit
   tag-add
   tag-remove
