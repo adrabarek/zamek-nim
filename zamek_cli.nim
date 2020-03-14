@@ -1,4 +1,4 @@
-import os, parseopt, strutils, logging
+import os, parseopt, strutils, logging, sequtils
 import zamek
 
 type
@@ -7,6 +7,15 @@ type
   Arguments = seq[string]
   Option = enum
     verbose
+
+proc cleanUpString(s: string): string =
+  strip(s).strip(chars = {','})
+
+proc cleanUpArgs(args: var seq[string]) =
+  apply(args, proc (x: var string) = 
+    x = cleanUpString(x))
+  keepIf(args, proc (x: string): bool = 
+    x != "")
 
 proc handleInvalidParams() =
   echo """usage: zamek [--verbose] [--help] <command> [<args>]
@@ -71,9 +80,6 @@ proc processCommandLine() : (Command, Arguments, set[Option]) =
 
   (command, arguments, options)
 
-proc toSnakeCase(s: string): string =
-  toLowerAscii(strip(s)).replace(" ", "_")
-
 proc doAdd(arguments: Arguments) =
   # validate arguments
   if len(arguments) != 4 and len(arguments) != 3:
@@ -81,15 +87,13 @@ proc doAdd(arguments: Arguments) =
     handleInvalidParams()
 
   var note: Note
-  note.name = toSnakeCase(arguments[0])
+  note.name = cleanUpString(arguments[0])
 
   note.tags = arguments[1].split(", ")
-  for i, tag in note.tags:
-    note.tags[i] = toSnakeCase(tag)
+  cleanUpArgs(note.tags)
 
   note.links = arguments[2].split(", ")
-  for i, link in note.links:
-    note.links[i] = toSnakeCase(link)
+  cleanUpArgs(note.links)
 
   if len(arguments) == 4:
     # content comes from argument
@@ -111,12 +115,10 @@ proc main() =
   of none:
     assert(false, "If no command is set, should exit early - nothing to do.")
   of create:
-    info("Trying to create a new Zamek repository.")
     if not zamek.createRepository(getCurrentDir()):
       error("Failed to create Zamek repository.")
       quit(QuitFailure)
   of add:
-    info("Trying to add a new note to Zamek.")
     doAdd(arguments)
   of remove:
     discard

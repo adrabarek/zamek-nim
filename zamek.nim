@@ -24,6 +24,9 @@ proc createPaths(root: string): Paths =
   let registryFilePath = joinPath(zamekDir, zamek.registryFileName)
   Paths(zamekDir: zamekDir, registryFilePath: registryFilePath)
 
+proc createNotePath(root: string, noteName: string): string =
+  joinPath(root, noteName & zamek.noteExtension)
+
 proc backupFile(path: string, maxBackups: int): bool =
     var nTries = 0
     while nTries < maxBackups:
@@ -46,16 +49,25 @@ proc onlyZamekFilesPresent(path: string): bool =
 proc isZamekDirectory(path: string): bool =
   dirExists(joinPath(path, zamek.dirName)) and onlyZamekFilesPresent(path)
 
-proc addNote(registry: var Registry, note: Note): bool =
+proc addNote(registry: var Registry, note: Note, root: string): bool =
+  for otherNote in note.links:
+    if not fileExists(createNotePath(root, otherNote)):
+      error("Trying to link note ", note.name, " to ", otherNote, " which doesn't exist.")
+      return false;
+
   for tag in note.tags:
     if tag notin registry.tags:
+      info("Tag ", tag, " used for the first time.")
       registry.tags[tag] = HashSet[NoteName]()
     registry.tags[tag].incl(note.name)
 
   for otherNote in note.links:
     if note.name notin registry.links:
       registry.links[note.name] = HashSet[NoteName]()
+    if otherNote notin registry.links:
+      registry.links[otherNote] = HashSet[NoteName]()
     registry.links[note.name].incl(otherNote)
+    registry.links[otherNote].incl(note.name)
 
   return true
 
@@ -64,7 +76,7 @@ proc addNote*(root: string, note: Note): bool =
       error("Not a valid Zamek directory. Initialize one using create command.")
       return false
 
-    let notePath = joinPath(root, note.name & zamek.noteExtension)
+    let notePath = createNotePath(root, note.name)
 
     if fileExists(notePath):
       error("Cannot add note - note with that name already exists.")
@@ -75,12 +87,12 @@ proc addNote*(root: string, note: Note): bool =
 
     let paths = createPaths(root)
     var registry = to[zamek.Registry](readFile(paths.registryFilePath))
-    if not addNote(registry, note):
+    if not registry.addNote(note, root):
       error("Failed to add note to the registry.")
       return false
     writeFile(paths.registryFilePath, $$(registry))
 
-    info("Successfuly added Zamek note.")
+    info("Successfuly added Zamek note: ", note)
     return true
 
 proc createRepository*(root: string): bool =
@@ -98,7 +110,7 @@ proc createRepository*(root: string): bool =
   for file in walkPattern(getCurrentDir() & "/*"):
     # add note to the registry
     var note = to[Note](readFile(file))
-    if not addNote(registry, note):
+    if not registry.addNote(note, root):
       error("Failed to add present note to new repository. Aborting.")
       return false
     # make the note file read-only
