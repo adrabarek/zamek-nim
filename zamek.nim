@@ -12,7 +12,7 @@ type
     content*: string
     tags*: seq[Tag]
     links*: seq[NoteName]
-  Registry = object
+  Registry* = object
     links : Table[NoteName, HashSet[NoteName]]
     tags : Table[Tag, HashSet[NoteName]]
   Paths = object
@@ -43,12 +43,23 @@ proc backupFile(path: string, maxBackups: int): bool =
 proc isZamekDirectory(path: string): bool =
   dirExists(joinPath(path, zamek.dirName))
 
-proc loadRegistry(root: string): Registry =
+proc loadRegistry*(root: string, registry: var Registry): bool =
   let paths = createZamekPaths(root)
-  to[zamek.Registry](readFile(paths.registryFilePath))
+  try:
+    registry = to[zamek.Registry](readFile(paths.registryFilePath))
+  except IOError:
+    error("Failed to load registry - IO error.")
+    return false
+  return true
 
-proc loadNote(notePath: string): Note = 
-  to[zamek.Note](readFile(notePath))
+proc saveRegistry*(root: string, registry: Registry): bool =
+  let paths = createZamekPaths(root)
+  try:
+    writeFile(paths.registryFilePath, $$(registry))
+  except IOError:
+    error("Failed to save registry - IO error.")
+    return false
+  return true
 
 proc addNote(registry: var Registry, note: Note, root: string): bool =
   for otherNote in note.links:
@@ -72,7 +83,7 @@ proc addNote(registry: var Registry, note: Note, root: string): bool =
 
   return true
 
-proc removeNote(registry: var Registry, note: Note, root: string) =
+proc removeNote*(root: string, registry: var Registry, note: Note) =
   for otherNoteName in registry.links[note.name]:
     registry.links[otherNoteName].excl(note.name)
   registry.links.del(note.name)
@@ -81,6 +92,34 @@ proc removeNote(registry: var Registry, note: Note, root: string) =
     registry.tags[tag].excl(note.name)
     if registry.tags[tag].len() == 0:
       registry.tags.del(tag)
+
+  removeFile(createNotePath(root, note.name))
+
+  info("Removed note ", note.name, " from Zamek.")
+
+proc loadNote*(root: string, noteName: string, note: var Note): bool = 
+  let notePath = createNotePath(root, noteName)
+  if not fileExists(notePath):
+    error("Cannot retrieve note ", noteName, " - the file doesn't exist.")
+    return false
+  try:
+    note = to[zamek.Note](readFile(notePath))
+  except IOError:
+    error("Failed to load note, IO error.")
+    return false
+  return true
+
+proc saveNote*(root: string, note: Note) =
+  let notePath = createNotePath(root, note.name)
+  try:
+    if fileExists(notePath):
+      setFilePermissions(notePath, {fpUserWrite, fpGroupWrite, fpOthersWrite})
+    writeFile(notePath, $$(note))
+    setFilePermissions(notePath, {fpUserRead, fpGroupRead, fpOthersRead})
+  except IOError:
+    error("Failed to write note file - IO error.")
+  except OSError:
+    error("Failed to write note file - OS error.")
 
 proc addNote*(root: string, note: Note): bool =
   if not isZamekDirectory(root):
@@ -93,31 +132,23 @@ proc addNote*(root: string, note: Note): bool =
     error("Cannot add note - note with that name already exists.")
     return false
 
-  writeFile(notePath, $$(note))
-  setFilePermissions(notePath, {fpUserRead, fpGroupRead, fpOthersRead})
+  saveNote(root, note)
 
-  let paths = createZamekPaths(root)
-  var registry = loadRegistry(root)
+  var registry: Registry
+  if not loadRegistry(root, registry):
+    error("Failed to add note - couldn't load registry")
+    return false
+
   if not registry.addNote(note, root):
     error("Failed to add note to the registry.")
     return false
-  writeFile(paths.registryFilePath, $$(registry))
+
+  if not saveRegistry(root, registry):
+    error("Failed to add note - registry couldn't be saved.")
+    return false
 
   info("Successfuly added Zamek note: ", note)
   return true
-
-proc removeNote*(root: string, noteName: string) =
-  let notePath = createNotePath(root, noteName)
-
-  if not fileExists(notePath):
-    error("Cannot remove note ", noteName, " - the file doesn't exist.")
-
-  var note = loadNote(notePath)
-
-  var registry = loadRegistry(root)
-  removeNote(registry, note, root)
-
-  info("Removed note ", noteName, " from Zamek.")
 
 proc createRepository*(root: string): bool =
   let paths = createZamekPaths(root)
@@ -144,8 +175,9 @@ proc createRepository*(root: string): bool =
       error("Failed to backup registry file ", paths.registryFilePath, ". The command will have no effect.")
       return false
 
-  # save the registry file
-  writeFile(paths.registryFilePath, $$registry)
+  if not saveRegistry(root, registry):
+    error("Failed to create repository - registry couldn't be saved.")
+    return false
 
   info("Successfuly created Zamek repository.")
   return true;

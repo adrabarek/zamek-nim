@@ -3,7 +3,7 @@ import zamek
 
 type
   Command = enum
-    none, create, add, remove, edit, tag_add, tag_remove, find, find_by_tags, find_connected
+    none, create, add, remove, set_content, tag_add, tag_remove, find, find_by_tags, find_connected
   Arguments = seq[string]
   Option = enum
     verbose
@@ -28,11 +28,32 @@ Commands:
     tags    - Comma separated list of tags, e. g. "tag0, tag1, tag2"
     links   - Comma separated list of note names to link to, e. g. "note0, note1, note2"
     content - String containing content of the note. If not present, stdin is used.
+
+    Adds a note to Zamek.
   remove
-    <name>  - The name of the note to be removed.
-  edit
+    <name>  
+    name    - The name of the note to be removed.
+
+    Removes a note from Zamek.
+  get
+    <name>
+    name    - The name of the note to be printed.
+
+    Prints a note in JSON format.
+  set-content
+    <name> <content>
+    name    - The name of the note that will be modified.
+    content - New content of the note.
+
+    Sets content of given note.
   tag-add
   tag-remove
+  link-add
+    <first name> <second name>
+
+    Adds a link between two notes.
+  link-remove
+    <first name> <second name>
   find
   find-by-tags
   find-connected"""
@@ -55,8 +76,8 @@ proc processCommandLine() : (Command, Arguments, set[Option]) =
         command = Command.add
       of "remove":
         command = Command.remove
-      of "edit":
-        command = Command.edit
+      of "set-content":
+        command = Command.set_content
       of "tag-add":
         command = Command.tag_add
       of "tag-remove":
@@ -105,12 +126,36 @@ proc doAdd(arguments: Arguments) =
   if not zamek.addNote(getCurrentDir(), note):
     quit(QuitFailure)
 
+proc doSetContent(arguments: Arguments) =
+  if len(arguments) != 2:
+    error("Wrong number of arguments for set-content command.")
+    handleInvalidParams()
+
+  let noteName = cleanUpString(arguments[0])
+  var note: Note
+  if not zamek.loadNote(getCurrentDir(), noteName, note):
+    error("Failed to set note content - couldn't retrieve note.")
+
+  note.content = cleanUpString(arguments[1])
+  zamek.saveNote(getCurrentDir(), note)
+
+  info("Succesfully saved new content of note \"", note.name, "\": \"", note.content, "\"")
+
 proc doRemove(arguments: Arguments) =
   if len(arguments) != 1:
     error("Wrong number of arguments for remove command.")
     handleInvalidParams()
 
-  zamek.removeNote(getCurrentDir(), cleanUpString(arguments[0]))
+  let noteName = cleanUpString(arguments[0])
+  let root = getCurrentDir()
+
+  var note: Note
+  var registry: Registry
+  if not zamek.loadNote(root, noteName, note) or not loadRegistry(root, registry):
+    error("Cannot remove note \"", noteName, "\" couldn't retrieve note or load Zamek registry.")
+    return
+
+  zamek.removeNote(getCurrentDir(), registry, note)
 
 proc main() =
   let (command, arguments, options) = processCommandLine()
@@ -128,8 +173,8 @@ proc main() =
     doAdd(arguments)
   of remove:
     doRemove(arguments)
-  of edit:
-    discard
+  of set_content:
+    doSetContent(arguments)
   of tag_add:
     discard
   of tag_remove:
