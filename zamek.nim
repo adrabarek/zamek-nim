@@ -61,18 +61,14 @@ proc saveRegistry*(root: string, registry: Registry): bool =
     return false
   return true
 
-proc addNote(registry: var Registry, note: Note, root: string): bool =
-  for otherNote in note.links:
-    if not fileExists(createNotePath(root, otherNote)):
-      error("Trying to link note ", note.name, " to ", otherNote, " which doesn't exist.")
-      return false;
-
+proc updateTags*(registry: var Registry, note: Note) =
   for tag in note.tags:
     if tag notin registry.tags:
       info("Tag ", tag, " used for the first time.")
       registry.tags[tag] = HashSet[NoteName]()
     registry.tags[tag].incl(note.name)
 
+proc updateLinks*(registry: var Registry, note: Note) =
   for otherNote in note.links:
     if note.name notin registry.links:
       registry.links[note.name] = HashSet[NoteName]()
@@ -80,6 +76,15 @@ proc addNote(registry: var Registry, note: Note, root: string): bool =
       registry.links[otherNote] = HashSet[NoteName]()
     registry.links[note.name].incl(otherNote)
     registry.links[otherNote].incl(note.name)
+
+proc addNote(registry: var Registry, note: Note, root: string): bool =
+  for otherNote in note.links:
+    if not fileExists(createNotePath(root, otherNote)):
+      error("Trying to link note ", note.name, " to ", otherNote, " which doesn't exist.")
+      return false;
+
+  updateTags(registry, note)
+  updateLinks(registry, note)
 
   return true
 
@@ -109,7 +114,7 @@ proc loadNote*(root: string, noteName: string, note: var Note): bool =
     return false
   return true
 
-proc saveNote*(root: string, note: Note) =
+proc saveNote*(root: string, note: Note): bool =
   let notePath = createNotePath(root, note.name)
   try:
     if fileExists(notePath):
@@ -118,8 +123,11 @@ proc saveNote*(root: string, note: Note) =
     setFilePermissions(notePath, {fpUserRead, fpGroupRead, fpOthersRead})
   except IOError:
     error("Failed to write note file - IO error.")
+    return false
   except OSError:
     error("Failed to write note file - OS error.")
+    return false
+  return true
 
 proc addNote*(root: string, note: Note): bool =
   if not isZamekDirectory(root):
@@ -132,7 +140,9 @@ proc addNote*(root: string, note: Note): bool =
     error("Cannot add note - note with that name already exists.")
     return false
 
-  saveNote(root, note)
+  if not saveNote(root, note):
+    error("Failed to save note ", note.name)
+    return false
 
   var registry: Registry
   if not loadRegistry(root, registry):
